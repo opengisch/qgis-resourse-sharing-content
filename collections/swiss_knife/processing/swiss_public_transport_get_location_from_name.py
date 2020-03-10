@@ -88,10 +88,10 @@ class SwissPublicTransportGetLocationFromName(QgsProcessingAlgorithm):
         )
 
         output_fields = QgsFields(input_locations_data.fields())
-        output_fields.append(QgsField('stp_id', QVariant.Int, "int"))
-        output_fields.append(QgsField('stp_name', QVariant.String, "text"))
-        output_fields.append(QgsField('stp_x', QVariant.Double, "double"))
-        output_fields.append(QgsField('stp_y', QVariant.Double, "double"))
+        output_fields.append(QgsField('spt_id', QVariant.Int, "int"))
+        output_fields.append(QgsField('spt_name', QVariant.String, "text"))
+        output_fields.append(QgsField('spt_x', QVariant.Double, "double"))
+        output_fields.append(QgsField('spt_y', QVariant.Double, "double"))
 
         (sink, sink_id) = self.parameterAsSink(
             parameters, "OUTPUT", context, output_fields,
@@ -115,11 +115,11 @@ class SwissPublicTransportGetLocationFromName(QgsProcessingAlgorithm):
             if len(data['stations']) == 0:
                 pass
             else:
-                new_feature['stp_id'] = data['stations'][0]['id']
+                new_feature['spt_id'] = data['stations'][0]['id']
                 # x/y are switched
-                new_feature['stp_x'] = data['stations'][0]['coordinate']['y']
-                new_feature['stp_y'] = data['stations'][0]['coordinate']['x']
-                new_feature['stp_name'] = data['stations'][0]['name']
+                new_feature['spt_x'] = data['stations'][0]['coordinate']['y']
+                new_feature['spt_y'] = data['stations'][0]['coordinate']['x']
+                new_feature['spt_name'] = data['stations'][0]['name']
 
             if not data['stations'][0]['coordinate']['x'] or not data['stations'][0]['coordinate']['y']:
                 new_feature.setGeometry(QgsGeometry())
