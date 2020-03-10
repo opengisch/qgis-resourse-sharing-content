@@ -98,7 +98,13 @@ class SwissPublicTransportGetLocationFromName(QgsProcessingAlgorithm):
             QgsWkbTypes.Point, QgsCoordinateReferenceSystem("EPSG:4326")
         )
 
+        feature_count = input_locations_data.featureCount()
+        progress = 0
+
         for feature in input_locations_data.getFeatures():
+
+            feedback.setProgress(progress/feature_count)
+            progress += 1
 
             payload = {
                 'query': feature[field_input_name], 'type': 'station'}
