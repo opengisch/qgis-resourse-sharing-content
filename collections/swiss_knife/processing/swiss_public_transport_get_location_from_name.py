@@ -103,7 +103,7 @@ class SwissPublicTransportGetLocationFromName(QgsProcessingAlgorithm):
 
         for feature in input_locations_data.getFeatures():
 
-            feedback.setProgress(progress/feature_count)
+            feedback.setProgress(progress/feature_count*100)
             progress += 1
 
             payload = {
