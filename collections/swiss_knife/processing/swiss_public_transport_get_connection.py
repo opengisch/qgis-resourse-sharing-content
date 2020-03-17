@@ -121,7 +121,7 @@ class SwissPublicTransportGetConnection(QgsProcessingAlgorithm):
 
         (sink, sink_id) = self.parameterAsSink(
             parameters, "OUTPUT", context, output_fields,
-            input_layer.wkbType(), QgsCoordinateReferenceSystem()
+            input_layer.wkbType(), input_layer.crs()
         )
 
         feature_count = input_layer.featureCount()
